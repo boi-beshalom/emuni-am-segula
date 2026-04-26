@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>עמותת אמוני עם סגלה</title>
+  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;700;900&family=Heebo:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --purple: #8B1A6B;
+      --purple-light: #b5319a;
+      --purple-glow: rgba(139, 26, 107, 0.18);
+      --cream: #f5f0ea;
+      --dark: #1a1018;
+      --gold: #c9a96e;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Heebo', sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-end;
+      padding: 6rem 8vw 4rem;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('/mnt/user-data/uploads/1000411985.png');
+      background-size: cover;
+      background-position: center top;
+      filter: brightness(0.88) saturate(0.7);
+      z-index: 0;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(245, 240, 234, 0.82) 0%,
+        rgba(245, 240, 234, 0.55) 45%,
+        rgba(139, 26, 107, 0.08) 100%
+      );
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 680px;
+      text-align: right;
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--purple);
+      color: #fff;
+      font-family: 'Heebo', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      padding: 0.35em 1.1em;
+      border-radius: 2px;
+      margin-bottom: 1.4rem;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.2s ease forwards;
+    }
+
+    .hero h1 {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: clamp(2.8rem, 6vw, 5.2rem);
+      font-weight: 900;
+      line-height: 1.1;
+      color: var(--dark);
+      opacity: 0;
+      animation: fadeUp 0.8s 0.4s ease forwards;
+    }
+
+    .hero h1 span {
+      color: var(--purple);
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.22rem);
+      font-weight: 300;
+      color: #3d2c38;
+      line-height: 1.75;
+      margin-top: 1.4rem;
+      max-width: 500px;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.6s ease forwards;
+    }
+
+    .hero-cta {
+      margin-top: 2.4rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.85s ease forwards;
+    }
+
+    .btn-primary {
+      background: var(--purple);
+      color: #fff;
+      border: none;
+      padding: 0.85em 2.2em;
+      font-family: 'Heebo', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 3px;
+      cursor: pointer;
+      letter-spacing: 0.04em;
+      transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+      box-shadow: 0 4px 22px rgba(139,26,107,0.25);
+      text-decoration: none;
+    }
+    .btn-primary:hover {
+      background: var(--purple-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(139,26,107,0.35);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--purple);
+      border: 1.5px solid var(--purple);
+      padding: 0.82em 2em;
+      font-family: 'Heebo', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      border-radius: 3px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn-ghost:hover {
+      background: var(--purple-glow);
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      height: 4px;
+      background: linear-gradient(90deg, var(--purple) 0%, var(--purple-light) 60%, transparent 100%);
+    }
+
+    /* ── PROGRAMS SECTION ── */
+    .programs {
+      padding: 5rem 8vw;
+      background: #fff;
+    }
+
+    .section-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: var(--purple);
+      text-transform: uppercase;
+      margin-bottom: 0.7rem;
+    }
+
+    .section-title {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 0.6rem;
+      line-height: 1.2;
+    }
+
+    .section-desc {
+      color: #5a4555;
+      font-size: 1.05rem;
+      font-weight: 300;
+      line-height: 1.7;
+      max-width: 520px;
+      margin-bottom: 3rem;
+    }
+
+    .programs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.4rem;
+    }
+
+    .program-card {
+      background: var(--cream);
+      border-radius: 6px;
+      padding: 1.8rem 1.5rem;
+      border-right: 3px solid var(--purple);
+      transition: transform 0.22s, box-shadow 0.22s;
+      cursor: default;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .program-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 0;
+      background: linear-gradient(180deg, var(--purple-glow), transparent);
+      transition: height 0.3s;
+    }
+
+    .program-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 32px rgba(139,26,107,0.12);
+    }
+    .program-card:hover::before { height: 100%; }
+
+    .card-icon {
+      width: 36px;
+      height: 3px;
+      background: var(--purple);
+      border-radius: 2px;
+      margin-bottom: 1rem;
+    }
+
+    .card-title {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 1.22rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .card-desc {
+      font-size: 0.88rem;
+      color: #5a4555;
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    /* ── ABOUT STRIP ── */
+    .about {
+      background: var(--purple);
+      color: #fff;
+      padding: 4rem 8vw;
+      display: flex;
+      align-items: center;
+      gap: 4rem;
+      flex-wrap: wrap;
+    }
+
+    .about-text { flex: 1; min-width: 260px; }
+
+    .about h2 {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .about p {
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.8;
+      opacity: 0.9;
+      max-width: 480px;
+    }
+
+    .about-stats {
+      display: flex;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .stat { text-align: center; }
+
+    .stat-num {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 2.8rem;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.82rem;
+      opacity: 0.75;
+      margin-top: 0.3rem;
+      letter-spacing: 0.06em;
+    }
+
+    /* ── QUOTE ── */
+    .quote-section {
+      background: var(--cream);
+      padding: 5rem 8vw;
+      text-align: center;
+      position: relative;
+    }
+
+    .quote-mark {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 8rem;
+      color: var(--purple);
+      opacity: 0.12;
+      line-height: 0.6;
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    blockquote {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: clamp(1.3rem, 3vw, 2rem);
+      font-weight: 400;
+      color: var(--dark);
+      line-height: 1.6;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    cite {
+      display: block;
+      margin-top: 1.4rem;
+      font-size: 0.88rem;
+      font-family: 'Heebo', sans-serif;
+      color: var(--purple);
+      font-style: normal;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,0.6);
+      padding: 2.5rem 8vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.85rem;
+    }
+
+    footer strong {
+      color: #fff;
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 1.1rem;
+    }
+
+    .footer-tagline {
+      font-size: 0.78rem;
+      opacity: 0.5;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* Staggered card reveal */
+    .program-card { opacity: 0; transform: translateY(24px); transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.22s, scale 0.22s; }
+    .program-card.visible { opacity: 1; transform: translateY(0); }
+    .program-card:nth-child(2) { transition-delay: 0.08s; }
+    .program-card:nth-child(3) { transition-delay: 0.16s; }
+    .program-card:nth-child(4) { transition-delay: 0.24s; }
+    .program-card:nth-child(5) { transition-delay: 0.32s; }
+    .program-card:nth-child(6) { transition-delay: 0.40s; }
+    .program-card:nth-child(7) { transition-delay: 0.48s; }
+    .program-card:nth-child(8) { transition-delay: 0.56s; }
+
+    @media (max-width: 640px) {
+      .hero { align-items: center; padding: 5rem 6vw 3rem; }
+      .hero-content { text-align: center; }
+      .hero-cta { justify-content: center; }
+      .about { gap: 2rem; }
+      footer { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="badge">בס"ד · בואי בשלום</span>
+      <h1>עמותת <span>אמוני</span><br/>עם סגלה</h1>
+      <p class="hero-sub">
+        מסע של אמונה, צמיחה ועצמה לבית היהודי.<br/>
+        שיעורים, קורסים, מדרשה, ימי עיון ומסעות —<br/>
+        כל מה שנפשך מחפשת, כאן מחכה לך.
+      </p>
+      <div class="hero-cta">
+        <a class="btn-primary" href="#programs">לתוכניות שלנו ↓</a>
+        <a class="btn-ghost" href="#about">קצת עלינו</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- PROGRAMS -->
+  <section class="programs" id="programs">
+    <div class="reveal">
+      <p class="section-label">מה מציעים לך</p>
+      <h2 class="section-title">תוכניות וערוצי פעילות</h2>
+      <p class="section-desc">
+        מגוון עשיר של חוויות לימוד, גדילה ושייכות — לאישה היהודייה בכל שלב בחיים.
+      </p>
+    </div>
+    <div class="programs-grid">
+      <div class="program-card">
+        <div class="card-icon"></div>
+        <div class="card-title">שיעורי אמונה</div>
+        <p class="card-desc">שיעורים שבועיים להעמקה ביסודות האמונה היהודית וחיזוק הקשר עם הבורא.</p>
+      </div>
+      <div class="program-card">
+        <div class="card-icon"></div>
+        <div class="card-title">קורסי העשרה</div>
+        <p class="card-desc">קורסים מעמיקים בתחומי תורה, הלכה ומחשבה — עם מרצים מהשורה הראשונה.</p>
+      </div>
+      <div class="program-card">
+        <div class="card-icon"></div>
+        <div class="card-title">מדרשה לרווקות</div>
+        <p class="card-desc">מסגרת ייחודית לבנות שרוצות לצמוח תורנית ולפתח את עצמן לקראת הבית.</p>
+      </div>
+      <div class="program-card">
+        <div class="card-icon"></div>
+        <div class="card-title">סדנאות</div>
+        <p class="card-desc">סדנאות פרקטיות לעבודה עצמית — יחסים, זוגיות, אמות ובנות.</p>
+      </div>
+      <div class="program-card">
+        <div class="card-icon"></div>
+        <div class="card-title">ימי עיון</div>
+        <p class="card-desc">ימי עיון מרוכזים סביב נושא מרכזי, עם הרצאות, סדנאות ורגעי השראה.</p>
+      </div>
+      <div class="program-card">
+        <div class="card-icon"></div>
+        <div class="card-title">חברותות</div>
+        <p class="card-desc">לימוד בחברותא — שיתוף, עומק וחיבור בין נשים שאוהבות תורה.</p>
+      </div>
+      <div class="program-card">
+        <div class="card-icon"></div>
+        <div class="card-title">שבתות עיון</div>
+        <p class="card-desc">שבת שלמה של לימוד, תפילה ואחווה — חוויה שתשאיר חותם לאורך זמן.</p>
+      </div>
+      <div class="program-card">
+        <div class="card-icon"></div>
+        <div class="card-title">מסעות</div>
+        <p class="card-desc">מסעות לאתרים קדושים ומרגשים ברחבי הארץ ומחוצה לה.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT STRIP -->
+  <section class="about" id="about">
+    <div class="about-text reveal">
+      <h2>עוצמה והעצמה<br/>לבית היהודי</h2>
+      <p>
+        עמותת "בואי בשלום" פועלת מתוך אמונה עמוקה שכל אישה יהודייה נושאת בתוכה אור.<br/><br/>
+        אנו יוצרות מרחב חם ומעצים שבו אפשר ללמוד, לצמוח, להתחבר ולהיות — בשלום עם הקב"ה, עם הזולת ועם עצמך.
+      </p>
+    </div>
+    <div class="about-stats reveal">
+      <div class="stat">
+        <div class="stat-num">500+</div>
+        <div class="stat-label">נשים בקהילה</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">8</div>
+        <div class="stat-label">ערוצי פעילות</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">10+</div>
+        <div class="stat-label">שנות פעילות</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <section class="quote-section">
+    <span class="quote-mark">"</span>
+    <blockquote>
+      כי אמרתי עולם חסד יבנה —<br/>
+      כל צעד של אישה לעברת צמיחה<br/>
+      בונה את ביתה ואת עולמה.
+      <cite>— עמותת אמוני עם סגלה · בואי בשלום</cite>
+    </blockquote>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div>
+      <strong>עמותת אמוני עם סגלה</strong>
+      <p class="footer-tagline">עוצמה והעצמה לבית היהודי</p>
+    </div>
+    <div>בואי בשלום · כל הזכויות שמורות</div>
+  </footer>
+
+  <script>
+    // Intersection Observer for reveal animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal, .program-card').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
