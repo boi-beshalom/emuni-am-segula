@@ -300,11 +300,23 @@
     }
     .vid-modal-close:hover { background: rgba(200,0,0,0.5); }
 
-    .vid-modal-label {
-      color: rgba(255,255,255,0.5); font-size: 0.82rem;
-      font-family: 'Heebo', sans-serif; margin-top: 1rem;
-      letter-spacing: 0.08em;
+    .vid-arrow {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(0,0,0,0.45); border: 1.5px solid rgba(255,255,255,0.2);
+      color: #fff; border-radius: 50%; width: 46px; height: 46px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; font-size: 1.5rem; transition: background 0.2s;
+      backdrop-filter: blur(4px); user-select: none; z-index: 2;
     }
+    .vid-arrow:hover { background: rgba(139,26,107,0.6); border-color: var(--purple); }
+    .vid-prev { left: 10px; }
+    .vid-next { right: 10px; }
+
+    .vid-modal-meta {
+      display: flex; gap: 1.2rem; align-items: center; margin-top: 1rem;
+      color: rgba(255,255,255,0.55); font-family: 'Heebo', sans-serif; font-size: 0.82rem; letter-spacing: 0.08em;
+    }
+    .vid-modal-counter { color: rgba(255,255,255,0.35); }
 
     /* ── QUOTE ── */
     .quote-section { background: var(--cream); padding: 5rem 8vw; text-align: center; }
@@ -561,8 +573,13 @@
   <div class="vid-modal-inner">
     <button class="vid-modal-close" onclick="closeVidModal()">✕</button>
     <video id="vid-modal-player" controls playsinline></video>
+    <button class="vid-arrow vid-prev" onclick="vidNav(-1)">&#8249;</button>
+    <button class="vid-arrow vid-next" onclick="vidNav(1)">&#8250;</button>
   </div>
-  <div class="vid-modal-label" id="vid-modal-label"></div>
+  <div class="vid-modal-meta">
+    <div class="vid-modal-label" id="vid-modal-label"></div>
+    <div class="vid-modal-counter" id="vid-modal-counter"></div>
+  </div>
 </div>
 
 <script>
@@ -580,7 +597,6 @@
   ];
   let lbIndex = 0;
 
-  // Build dots
   const dotsContainer = document.getElementById('lb-dots');
   images.forEach((_, i) => {
     const d = document.createElement('div');
@@ -593,10 +609,7 @@
     lbIndex = (i + images.length) % images.length;
     const img = document.getElementById('lb-img');
     img.style.opacity = '0';
-    setTimeout(() => {
-      img.src = images[lbIndex];
-      img.style.opacity = '1';
-    }, 150);
+    setTimeout(() => { img.src = images[lbIndex]; img.style.opacity = '1'; }, 150);
     document.getElementById('lb-counter').textContent = (lbIndex + 1) + ' / ' + images.length;
     document.querySelectorAll('.lb-dot').forEach((d, di) => d.classList.toggle('active', di === lbIndex));
   }
@@ -607,6 +620,7 @@
     document.getElementById('lb').classList.add('open');
     document.body.style.overflow = 'hidden';
     lbShow(lbIndex);
+    history.pushState({ modal: 'lb' }, '');
   }
 
   function closeLb() {
@@ -616,7 +630,6 @@
 
   function lbNav(dir) { lbShow(lbIndex + dir); }
 
-  // Touch/swipe support
   let touchStartX = 0;
   document.getElementById('lb-img-wrap').addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
   document.getElementById('lb-img-wrap').addEventListener('touchend', e => {
@@ -624,21 +637,8 @@
     if (Math.abs(dx) > 40) lbNav(dx > 0 ? 1 : -1);
   });
 
-  // Keyboard navigation
-  document.addEventListener('keydown', e => {
-    if (document.getElementById('lb').classList.contains('open')) {
-      if (e.key === 'Escape') closeLb();
-      if (e.key === 'ArrowRight') lbNav(1);
-      if (e.key === 'ArrowLeft') lbNav(-1);
-    }
-    if (document.getElementById('vid-modal').classList.contains('open')) {
-      if (e.key === 'Escape') closeVidModal();
-    }
-  });
-
-  // Click backdrop to close
   document.getElementById('lb').addEventListener('click', function(e) {
-    if (e.target === this) closeLb();
+    if (e.target === this) { closeLb(); history.back(); }
   });
 
   // ── Video Modal ──
@@ -647,14 +647,24 @@
     { src: 'icon/02.mp4', label: 'סרטון 2' },
     { src: 'icon/03.mp4', label: 'סרטון 3' },
   ];
+  let vidIndex = 0;
+
+  function vidShow(i) {
+    vidIndex = (i + videos.length) % videos.length;
+    const player = document.getElementById('vid-modal-player');
+    player.pause();
+    player.src = videos[vidIndex].src;
+    document.getElementById('vid-modal-label').textContent = videos[vidIndex].label;
+    document.getElementById('vid-modal-counter').textContent = (vidIndex + 1) + ' / ' + videos.length;
+    player.load();
+    player.play();
+  }
 
   function openVidModal(index) {
-    const player = document.getElementById('vid-modal-player');
-    player.src = videos[index].src;
-    document.getElementById('vid-modal-label').textContent = videos[index].label;
     document.getElementById('vid-modal').classList.add('open');
     document.body.style.overflow = 'hidden';
-    player.play();
+    vidShow(index);
+    history.pushState({ modal: 'vid' }, '');
   }
 
   function closeVidModal() {
@@ -665,8 +675,33 @@
     document.body.style.overflow = '';
   }
 
+  function vidNav(dir) { vidShow(vidIndex + dir); }
+
   document.getElementById('vid-modal').addEventListener('click', function(e) {
-    if (e.target === this) closeVidModal();
+    if (e.target === this) { closeVidModal(); history.back(); }
+  });
+
+  // ── Keyboard ──
+  document.addEventListener('keydown', e => {
+    if (document.getElementById('lb').classList.contains('open')) {
+      if (e.key === 'Escape') { closeLb(); history.back(); }
+      if (e.key === 'ArrowRight') lbNav(1);
+      if (e.key === 'ArrowLeft') lbNav(-1);
+    }
+    if (document.getElementById('vid-modal').classList.contains('open')) {
+      if (e.key === 'Escape') { closeVidModal(); history.back(); }
+      if (e.key === 'ArrowRight') vidNav(1);
+      if (e.key === 'ArrowLeft') vidNav(-1);
+    }
+  });
+
+  // ── Back button: close modal instead of leaving page ──
+  window.addEventListener('popstate', e => {
+    if (document.getElementById('lb').classList.contains('open')) {
+      closeLb();
+    } else if (document.getElementById('vid-modal').classList.contains('open')) {
+      closeVidModal();
+    }
   });
 </script>
 </body>
