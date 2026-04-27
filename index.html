@@ -331,6 +331,39 @@
     footer a { color: rgba(255,255,255,0.55); text-decoration: none; }
     footer a:hover { color: #fff; }
 
+    /* ── TEAM ── */
+    .team-section { padding: 5rem 8vw; background: var(--cream); }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1.2rem;
+      margin-top: 2.5rem;
+    }
+
+    .team-card {
+      background: #fff;
+      border-radius: 8px;
+      padding: 1.6rem 1.4rem;
+      border-bottom: 3px solid var(--purple);
+      transition: transform 0.22s, box-shadow 0.22s;
+    }
+    .team-card:hover { transform: translateY(-4px); box-shadow: 0 10px 28px rgba(139,26,107,0.1); }
+
+    .team-role-bar { width: 28px; height: 3px; background: var(--purple); border-radius: 2px; margin-bottom: 0.9rem; opacity: 0.5; }
+
+    .team-name {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 1.08rem; font-weight: 700; color: var(--dark);
+      margin-bottom: 0.3rem; line-height: 1.3;
+    }
+    .team-role {
+      font-size: 0.78rem; font-weight: 700; color: var(--purple);
+      letter-spacing: 0.04em; margin-bottom: 0.5rem;
+      text-transform: uppercase;
+    }
+    .team-desc { font-size: 0.83rem; color: #5a4555; line-height: 1.55; font-weight: 300; }
+
     /* ── ANIMATIONS ── */
     @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
     .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
@@ -362,10 +395,19 @@
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <span class="badge">בס"ד · בואי בשלום</span>
-    <h1>עמותת <span>אמוני</span><br/>עם סגלה</h1>
+    <h1><span>בואי בשלום</span><br/>
+    <span style="font-size:0.55em; font-weight:700; color:var(--dark);">שעל ידי עמותת אמוני עם סגלה</span></h1>
     <p class="hero-sub">
-      מסע של אמונה....<br/>
-      ...כאן מחכה לך.
+      🩷 מסע קסום מעורר השראה — לך באופן אישי,<br/>
+      ולקידום הזוגיות והמשפחה.<br/><br/>
+      עולם ומלואו של מושגים בתורה וביהדות שלא הכרת עד כה.<br/>
+      כאן את יכולה לגלות את הקסם הנשי היהודי שבך!<br/><br/>
+      בואי בשלום פותחת לך ערוץ להתפתחות אישית —<br/>
+      ללמוד ולהבין את מה שלא ידעת אף פעם.<br/>
+      כל שיעור או סדנה יחדד את חוט המחשבה ויעורר<br/>
+      תובנה חדשה: לחיות טוב יותר, לשמוח יותר, להאמין יותר.<br/><br/>
+      כל מסע זוגי ישפר את איכות הזוגיות<br/>
+      וישאיר לכם טעם של עוד...
     </p>
     <div class="hero-cta">
       <a class="btn-primary" href="#programs">לתוכניות שלנו ↓</a>
@@ -413,9 +455,117 @@
     </div>
     <div class="program-card">
       <div class="card-bar"></div>
-      <div class="card-title">מסעות</div>
-      <p class="card-desc">מסעות לאתרים קדושים ומרגשים ברחבי הארץ ומחוץ לה, כולל מסע פולין ומחנות ההשמדה.</p>
+      <div class="card-title">הדרכות כלה</div>
+      <p class="card-desc">הדרכות כלה מובחרות ומעמיקות — בליווי אישי, מקצועי ורגיש לקראת הבית החדש.</p>
     </div>
+    <div class="program-card">
+      <div class="card-bar"></div>
+      <div class="card-title">סיוע בשידוכים</div>
+      <p class="card-desc">סיוע בשידוכים לצעירות המדרשה ולבעלי תשובה — מתוך אכפתיות, ניסיון ואחריות.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team-section" id="team">
+  <div class="reveal">
+    <p class="section-label">מאחורי הקלעים</p>
+    <h2 class="section-title">הצוות המובחר שלנו</h2>
+    <p class="section-desc">מרצים ורבניות בכירים, בעלי תארים אקדמיים וניסיון עשיר — כל אחד מביא עולם שלם.</p>
+  </div>
+  <div class="team-grid">
+
+    <div class="team-card reveal">
+      <div class="team-role-bar"></div>
+      <div class="team-name">שרה צרויה</div>
+      <div class="team-role">מנכ"לית העמותה</div>
+      <div class="team-desc">אשת חינוך וטיפול, MA</div>
+    </div>
+
+    <div class="team-card reveal">
+      <div class="team-role-bar"></div>
+      <div class="team-name">הרב שלום מלול</div>
+      <div class="team-role">רב שבתות ומסעות</div>
+      <div class="team-desc">רב מחנה צבאי, היסטוריון לחקר השואה, ראש ישיבת אמית אשדוד</div>
+    </div>
+
+    <div class="team-card reveal">
+      <div class="team-role-bar"></div>
+      <div class="team-name">הרב דוד בניזרי</div>
+      <div class="team-role">ראש המדרשה לרווקות</div>
+      <div class="team-desc">מוביל את מדרשת "נקודת מבט" בבית שמש</div>
+    </div>
+
+    <div class="team-card reveal">
+      <div class="team-role-bar"></div>
+      <div class="team-name">הרב בנימין דיין</div>
+      <div class="team-role">שיעורי תורה לגברים</div>
+      <div class="team-desc">מרצה בכיר בתחומי הלכה ומחשבה</div>
+    </div>
+
+    <div class="team-card reveal">
+      <div class="team-role-bar"></div>
+      <div class="team-name">הרב עופר ברוך</div>
+      <div class="team-role">הרצאות</div>
+      <div class="team-desc">מרצה בכיר בתחומי אמונה ויהדות</div>
+    </div>
+
+    <div class="team-card reveal">
+      <div class="team-role-bar"></div>
+      <div class="team-name">הרבנית רויטל צדוק</div>
+      <div class="team-role">אחראית מדרשה ע"ש עטרת שרה</div>
+      <div class="team-desc">MA, יועצת זוגית ומשפחתית, מטפלת רגשית</div>
+    </div>
+
+    <div class="team-card reveal">
+      <div class="team-role-bar"></div>
+      <div class="team-name">הרבנית נעמי שרעבני</div>
+      <div class="team-role">מרצה בכירה</div>
+      <div class="team-desc">מטפלת רגשית ומדריכת כלות</div>
+    </div>
+
+    <div class="team-card reveal">
+      <div class="team-role-bar"></div>
+      <div class="team-name">הרבנית שרית דיין</div>
+      <div class="team-role">מדריכת כלות</div>
+      <div class="team-desc">יועצת רוחנית ומלווה אישית</div>
+    </div>
+
+    <div class="team-card reveal">
+      <div class="team-role-bar"></div>
+      <div class="team-name">הרבנית מרב לוי</div>
+      <div class="team-role">מרצה בכירה</div>
+      <div class="team-desc">MA, עולם תוכן עשיר בתורה ומחשבה</div>
+    </div>
+
+    <div class="team-card reveal">
+      <div class="team-role-bar"></div>
+      <div class="team-name">הרבנית תמר גרסין</div>
+      <div class="team-role">מרצה בכירה</div>
+      <div class="team-desc">מטפלת זוגית ורגשית</div>
+    </div>
+
+    <div class="team-card reveal">
+      <div class="team-role-bar"></div>
+      <div class="team-name">הרבנית יוכבד עזריאל</div>
+      <div class="team-role">מרצה בכירה</div>
+      <div class="team-desc">עושר תורני ואנושי בכל הרצאה</div>
+    </div>
+
+    <div class="team-card reveal">
+      <div class="team-role-bar"></div>
+      <div class="team-name">הרבנית רויטל שמואלי</div>
+      <div class="team-role">אחראית מופעים וכנסים</div>
+      <div class="team-desc">מפיקה ומנחה אירועים תורניים</div>
+    </div>
+
+    <div class="team-card reveal">
+      <div class="team-role-bar"></div>
+      <div class="team-name">הרבנית ברכה ליבמן</div>
+      <div class="team-role">מרצה בכירה</div>
+      <div class="team-desc">יועצת רוחנית ומלווה אישית</div>
+    </div>
+
   </div>
 </section>
 
@@ -449,7 +599,7 @@
           <span class="cb-sub">054-268-7071</span>
         </a>
         <a class="contact-btn btn-donate" href="https://www.matara.pro/nedarimplus/online/?mosad=7017183" target="_blank">
-          <span class="cb-icon">🕯️</span>
+          <span class="cb-icon">💛</span>
           <span class="cb-title">תרומות והקדשות</span>
           <span class="cb-sub">נדרים פלוס</span>
         </a>
