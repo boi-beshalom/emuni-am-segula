@@ -114,11 +114,27 @@
     .about p + p { margin-top: 0.9rem; }
     .about-box { background: rgba(255,255,255,0.1); border-radius: 8px; padding: 1.4rem 1.6rem; margin-top: 1.5rem; font-size: 0.92rem; line-height: 1.9; }
     .about-box strong { font-weight: 700; }
-    .about-contact { margin-top: 1.6rem; display: flex; flex-wrap: wrap; gap: 1rem; }
-    .btn-white { background: #fff; color: var(--purple); font-family: 'Heebo', sans-serif; font-weight: 700; font-size: 0.9rem; padding: 0.65em 1.6em; border-radius: 3px; text-decoration: none; display: inline-block; transition: opacity 0.2s; }
-    .btn-white:hover { opacity: 0.85; }
-    .btn-outline-white { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.6); font-family: 'Heebo', sans-serif; font-weight: 500; font-size: 0.9rem; padding: 0.63em 1.5em; border-radius: 3px; text-decoration: none; display: inline-block; transition: border-color 0.2s, background 0.2s; }
-    .btn-outline-white:hover { border-color: #fff; background: rgba(255,255,255,0.1); }
+    .about-contact {
+      margin-top: 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .contact-btn {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 0.35rem; padding: 1.1em 1em;
+      border-radius: 8px; text-decoration: none;
+      font-family: 'Heebo', sans-serif; text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .contact-btn:hover { transform: translateY(-3px); }
+    .contact-btn .cb-icon { font-size: 1.6rem; line-height: 1; }
+    .contact-btn .cb-title { font-size: 0.92rem; font-weight: 700; }
+    .contact-btn .cb-sub { font-size: 0.78rem; opacity: 0.75; font-weight: 400; }
+    .contact-btn.btn-wa { background: #fff; color: var(--purple); box-shadow: 0 4px 18px rgba(0,0,0,0.15); }
+    .contact-btn.btn-wa:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.2); }
+    .contact-btn.btn-donate { background: rgba(255,255,255,0.12); color: #fff; border: 1.5px solid rgba(255,255,255,0.35); }
+    .contact-btn.btn-donate:hover { background: rgba(255,255,255,0.2); border-color: rgba(255,255,255,0.7); }
 
     .about-stats { display: flex; gap: 3rem; flex-wrap: wrap; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 2.5rem; }
     .stat { text-align: center; }
@@ -320,8 +336,16 @@
         📍 רח' השבעה 9, בית שמש
       </div>
       <div class="about-contact">
-        <a class="btn-white" href="https://wa.me/972542687071" target="_blank">📲 צרי קשר בוואטסאפ · 054-268-7071</a>
-        <a class="btn-outline-white" href="https://www.matara.pro/nedarimplus/online/?mosad=7017183" target="_blank">💛 לתרומות והקדשות</a>
+        <a class="contact-btn btn-wa" href="https://wa.me/972542687071" target="_blank">
+          <span class="cb-icon">📲</span>
+          <span class="cb-title">צרי קשר בוואטסאפ</span>
+          <span class="cb-sub">054-268-7071</span>
+        </a>
+        <a class="contact-btn btn-donate" href="https://www.matara.pro/nedarimplus/online/?mosad=7017183" target="_blank">
+          <span class="cb-icon">💛</span>
+          <span class="cb-title">תרומות והקדשות</span>
+          <span class="cb-sub">נדרים פלוס</span>
+        </a>
       </div>
     </div>
     <div class="reveal" style="flex-shrink:0;">
@@ -342,22 +366,22 @@
     <h2 class="section-title">גלריית תמונות</h2>
   </div>
   <div class="gallery-grid">
-    <!-- 15 images: 01.jpg – 15.jpg -->
-    <div class="gallery-item" onclick="openLb('01.jpg')"><img src="01.jpg" alt="1" onerror="this.style.display='none'"/><div class="ph">01</div><div class="gallery-overlay"></div></div>
-    <div class="gallery-item" onclick="openLb('02.jpg')"><img src="02.jpg" alt="2" onerror="this.style.display='none'"/><div class="ph">02</div><div class="gallery-overlay"></div></div>
-    <div class="gallery-item" onclick="openLb('03.jpg')"><img src="03.jpg" alt="3" onerror="this.style.display='none'"/><div class="ph">03</div><div class="gallery-overlay"></div></div>
-    <div class="gallery-item" onclick="openLb('04.jpg')"><img src="04.jpg" alt="4" onerror="this.style.display='none'"/><div class="ph">04</div><div class="gallery-overlay"></div></div>
-    <div class="gallery-item" onclick="openLb('05.jpg')"><img src="05.jpg" alt="5" onerror="this.style.display='none'"/><div class="ph">05</div><div class="gallery-overlay"></div></div>
-    <div class="gallery-item" onclick="openLb('06.jpg')"><img src="06.jpg" alt="6" onerror="this.style.display='none'"/><div class="ph">06</div><div class="gallery-overlay"></div></div>
-    <div class="gallery-item" onclick="openLb('07.jpg')"><img src="07.jpg" alt="7" onerror="this.style.display='none'"/><div class="ph">07</div><div class="gallery-overlay"></div></div>
-    <div class="gallery-item" onclick="openLb('08.jpg')"><img src="08.jpg" alt="8" onerror="this.style.display='none'"/><div class="ph">08</div><div class="gallery-overlay"></div></div>
-    <div class="gallery-item" onclick="openLb('09.jpg')"><img src="09.jpg" alt="9" onerror="this.style.display='none'"/><div class="ph">09</div><div class="gallery-overlay"></div></div>
-    <div class="gallery-item" onclick="openLb('10.jpg')"><img src="10.jpg" alt="10" onerror="this.style.display='none'"/><div class="ph">10</div><div class="gallery-overlay"></div></div>
-    <div class="gallery-item" onclick="openLb('11.jpg')"><img src="11.jpg" alt="11" onerror="this.style.display='none'"/><div class="ph">11</div><div class="gallery-overlay"></div></div>
-    <div class="gallery-item" onclick="openLb('12.jpg')"><img src="12.jpg" alt="12" onerror="this.style.display='none'"/><div class="ph">12</div><div class="gallery-overlay"></div></div>
-    <div class="gallery-item" onclick="openLb('13.jpg')"><img src="13.jpg" alt="13" onerror="this.style.display='none'"/><div class="ph">13</div><div class="gallery-overlay"></div></div>
-    <div class="gallery-item" onclick="openLb('14.jpg')"><img src="14.jpg" alt="14" onerror="this.style.display='none'"/><div class="ph">14</div><div class="gallery-overlay"></div></div>
-    <div class="gallery-item" onclick="openLb('15.jpg')"><img src="15.jpg" alt="15" onerror="this.style.display='none'"/><div class="ph">15</div><div class="gallery-overlay"></div></div>
+    <!-- 15 images from icon/ folder -->
+    <div class="gallery-item" onclick="openLb('icon/01.jpg')"><img src="icon/01.jpg" alt="1" onerror="this.style.display='none'"/><div class="ph">01</div><div class="gallery-overlay"></div></div>
+    <div class="gallery-item" onclick="openLb('icon/02.jpg')"><img src="icon/02.jpg" alt="2" onerror="this.style.display='none'"/><div class="ph">02</div><div class="gallery-overlay"></div></div>
+    <div class="gallery-item" onclick="openLb('icon/03.jpg')"><img src="icon/03.jpg" alt="3" onerror="this.style.display='none'"/><div class="ph">03</div><div class="gallery-overlay"></div></div>
+    <div class="gallery-item" onclick="openLb('icon/04.jpg')"><img src="icon/04.jpg" alt="4" onerror="this.style.display='none'"/><div class="ph">04</div><div class="gallery-overlay"></div></div>
+    <div class="gallery-item" onclick="openLb('icon/05.jpg')"><img src="icon/05.jpg" alt="5" onerror="this.style.display='none'"/><div class="ph">05</div><div class="gallery-overlay"></div></div>
+    <div class="gallery-item" onclick="openLb('icon/06.jpg')"><img src="icon/06.jpg" alt="6" onerror="this.style.display='none'"/><div class="ph">06</div><div class="gallery-overlay"></div></div>
+    <div class="gallery-item" onclick="openLb('icon/07.jpg')"><img src="icon/07.jpg" alt="7" onerror="this.style.display='none'"/><div class="ph">07</div><div class="gallery-overlay"></div></div>
+    <div class="gallery-item" onclick="openLb('icon/08.jpg')"><img src="icon/08.jpg" alt="8" onerror="this.style.display='none'"/><div class="ph">08</div><div class="gallery-overlay"></div></div>
+    <div class="gallery-item" onclick="openLb('icon/09.jpg')"><img src="icon/09.jpg" alt="9" onerror="this.style.display='none'"/><div class="ph">09</div><div class="gallery-overlay"></div></div>
+    <div class="gallery-item" onclick="openLb('icon/10.jpg')"><img src="icon/10.jpg" alt="10" onerror="this.style.display='none'"/><div class="ph">10</div><div class="gallery-overlay"></div></div>
+    <div class="gallery-item" onclick="openLb('icon/11.jpg')"><img src="icon/11.jpg" alt="11" onerror="this.style.display='none'"/><div class="ph">11</div><div class="gallery-overlay"></div></div>
+    <div class="gallery-item" onclick="openLb('icon/12.jpg')"><img src="icon/12.jpg" alt="12" onerror="this.style.display='none'"/><div class="ph">12</div><div class="gallery-overlay"></div></div>
+    <div class="gallery-item" onclick="openLb('icon/13.jpg')"><img src="icon/13.jpg" alt="13" onerror="this.style.display='none'"/><div class="ph">13</div><div class="gallery-overlay"></div></div>
+    <div class="gallery-item" onclick="openLb('icon/14.jpg')"><img src="icon/14.jpg" alt="14" onerror="this.style.display='none'"/><div class="ph">14</div><div class="gallery-overlay"></div></div>
+    <div class="gallery-item" onclick="openLb('icon/15.jpg')"><img src="icon/15.jpg" alt="15" onerror="this.style.display='none'"/><div class="ph">15</div><div class="gallery-overlay"></div></div>
   </div>
 </section>
 
@@ -370,7 +394,7 @@
   <div class="video-row reveal">
 
     <div class="video-card">
-      <video src="01.mp4" preload="metadata" loop muted playsinline></video>
+      <video src="icon/01.mp4" preload="metadata" loop muted playsinline></video>
       <div class="video-play-btn" onclick="toggleVid(this)">
         <div class="play-circle">
           <svg width="22" height="22" viewBox="0 0 24 24"><polygon points="6,4 20,12 6,20" fill="#8B1A6B"/></svg>
@@ -380,7 +404,7 @@
     </div>
 
     <div class="video-card">
-      <video src="02.mp4" preload="metadata" loop muted playsinline></video>
+      <video src="icon/02.mp4" preload="metadata" loop muted playsinline></video>
       <div class="video-play-btn" onclick="toggleVid(this)">
         <div class="play-circle">
           <svg width="22" height="22" viewBox="0 0 24 24"><polygon points="6,4 20,12 6,20" fill="#8B1A6B"/></svg>
@@ -390,7 +414,7 @@
     </div>
 
     <div class="video-card">
-      <video src="03.mp4" preload="metadata" loop muted playsinline></video>
+      <video src="icon/03.mp4" preload="metadata" loop muted playsinline></video>
       <div class="video-play-btn" onclick="toggleVid(this)">
         <div class="play-circle">
           <svg width="22" height="22" viewBox="0 0 24 24"><polygon points="6,4 20,12 6,20" fill="#8B1A6B"/></svg>
