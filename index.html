@@ -37,6 +37,9 @@
     }
     .hero-content { position: relative; z-index: 2; max-width: 680px; text-align: right; }
 
+    .hero-logo { margin-bottom: 1.2rem; }
+    .hero-logo img { height: 90px; width: auto; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.12)); }
+
     .badge {
       display: inline-block; background: var(--purple); color: #fff;
       font-size: 0.78rem; font-weight: 500; letter-spacing: 0.12em;
@@ -331,6 +334,14 @@
     footer a { color: rgba(255,255,255,0.55); text-decoration: none; }
     footer a:hover { color: #fff; }
 
+    .dev-footer {
+      background: #111; color: rgba(255,255,255,0.3);
+      text-align: center; padding: 0.9rem 2rem;
+      font-size: 0.75rem; font-family: 'Heebo', sans-serif;
+    }
+    .dev-footer a { color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
+    .dev-footer a:hover { color: #fff; }
+
     /* ── TEAM ── */
     .team-section { padding: 5rem 8vw; background: var(--cream); }
 
@@ -394,11 +405,14 @@
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
+    <div class="hero-logo reveal" style="opacity:0; animation: fadeUp 0.7s 0.1s ease forwards;">
+      <img src="/mnt/user-data/uploads/1000415611.jpg" alt="בואי בשלום" />
+    </div>
     <span class="badge">בס"ד · בואי בשלום</span>
     <h1><span>בואי בשלום</span><br/>
     <span style="font-size:0.55em; font-weight:700; color:var(--dark);">שעל ידי עמותת אמוני עם סגלה</span></h1>
     <p class="hero-sub">
-       מסע קסום מעורר השראה — לך באופן אישי,<br/>
+      🩷 מסע קסום מעורר השראה — לך באופן אישי,<br/>
       ולקידום הזוגיות והמשפחה.<br/><br/>
       עולם ומלואו של מושגים בתורה וביהדות שלא הכרת עד כה.<br/>
       כאן את יכולה לגלות את הקסם הנשי היהודי שבך!<br/><br/>
@@ -566,8 +580,12 @@
       <div class="team-desc">יועצת רוחנית ומלווה אישית</div>
     </div>
 
-  </div>
-</section>
+    <div class="team-card reveal">
+      <div class="team-role-bar"></div>
+      <div class="team-name">נעמי יפרח</div>
+      <div class="team-role">מזכירות ולוגיסטיקה</div>
+      <div class="team-desc">לב הארגון — מרכזת ומתאמת את כל הפעילות</div>
+    </div>
 
 <!-- ABOUT -->
 <section class="about" id="about">
@@ -595,11 +613,11 @@
       <div class="about-contact">
         <a class="contact-btn btn-wa" href="https://wa.me/972542687071" target="_blank">
           <span class="cb-icon">📲</span>
-          <span class="cb-title">צרי קשר בוואטסאפ</span>
-          <span class="cb-sub">054-268-7071</span>
+          <span class="cb-title">שרה צרויה — מנכ"לית</span>
+          <span class="cb-sub">וואטסאפ · 054-268-7071</span>
         </a>
         <a class="contact-btn btn-donate" href="https://www.matara.pro/nedarimplus/online/?mosad=7017183" target="_blank">
-          <span class="cb-icon">🕯️</span>
+          <span class="cb-icon">💛</span>
           <span class="cb-title">תרומות והקדשות</span>
           <span class="cb-sub">נדרים פלוס</span>
         </a>
@@ -686,14 +704,11 @@
 <!-- QUOTE -->
 <section class="quote-section">
   <span class="quote-mark">"</span>
-  <blockquote style="direction: rtl;">
-    "בְּחָכְמָה יִבָּנֶה בָּיִת<br/>וּבִתְבוּנָה יִתְכּוֹנָן"
-    <small>(משלי)</small>
-    <!--<cite>עמותת בואי בשלום</cite>-->
+  <blockquote>
+    בחכמה יבנה בית<br/>ובתבונה יתכונן
+    <cite>— משלי · עמותת בואי בשלום</cite>
   </blockquote>
 </section>
-
-
 
 <!-- FOOTER -->
 <footer>
@@ -706,6 +721,10 @@
     <div><a href="https://www.matara.pro/nedarimplus/online/?mosad=7017183" target="_blank" style="font-size:0.8rem; opacity:0.6;">תרומות — נדרים פלוס</a></div>
   </div>
 </footer>
+<div class="dev-footer">
+  כל הזכויות שמורות © D.H. פיתוח אתרים &nbsp;·&nbsp;
+  <a href="https://wa.me/972556789344" target="_blank">📲 055-678-9344</a>
+</div>
 
 <!-- IMAGE LIGHTBOX with slider -->
 <div class="lb" id="lb">
