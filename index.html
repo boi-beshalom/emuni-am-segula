@@ -403,10 +403,14 @@
     }
     .quote-bg {
       position: absolute; inset: 0;
+    }
+    .quote-bg-layer {
+      position: absolute; inset: 0;
       background-size: cover; background-position: center;
       filter: brightness(0.35) saturate(0.5);
-      transition: background-image 0.8s ease-in-out;
+      transition: opacity 1s ease-in-out;
     }
+    .quote-bg-layer.hidden { opacity: 0; }
     .quote-inner { position: relative; z-index: 2; }
     .quote-dove { margin-bottom: 1.5rem; opacity: 0.7; }
     .quote-dove svg { width: 52px; height: 52px; }
@@ -878,7 +882,10 @@
 
 <!-- QUOTE -->
 <section class="quote-section">
-  <div class="quote-bg"></div>
+  <div class="quote-bg">
+    <div class="quote-bg-layer" id="quote-layer-a"></div>
+    <div class="quote-bg-layer hidden" id="quote-layer-b"></div>
+  </div>
   <div class="quote-inner reveal">
     <div class="quote-dove">
       <svg viewBox="0 0 100 80" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1058,7 +1065,43 @@
     }
   });
 
-  // ── Back button: close modal instead of leaving page ──
+  // ── Quote section background slideshow ──
+  (function() {
+    const bgImages = [
+      'icon/01.jpg','icon/02.jpg','icon/03.jpg','icon/04.jpg','icon/05.jpg',
+      'icon/06.jpg','icon/07.jpg','icon/08.jpg','icon/09.jpg','icon/10.jpg',
+      'icon/11.jpg','icon/12.jpg','icon/13.jpg','icon/14.jpg','icon/15.jpg'
+    ];
+    let currentIndex = 0;
+    let activeLayer = 'a';
+    const layerA = document.getElementById('quote-layer-a');
+    const layerB = document.getElementById('quote-layer-b');
+
+    // Set initial image
+    layerA.style.backgroundImage = `url('${bgImages[0]}')`;
+
+    function nextBg() {
+      currentIndex = (currentIndex + 1) % bgImages.length;
+      const nextImg = bgImages[currentIndex];
+
+      if (activeLayer === 'a') {
+        // Load next into B, then fade B in, fade A out
+        layerB.style.backgroundImage = `url('${nextImg}')`;
+        layerB.classList.remove('hidden');
+        layerA.classList.add('hidden');
+        activeLayer = 'b';
+      } else {
+        // Load next into A, then fade A in, fade B out
+        layerA.style.backgroundImage = `url('${nextImg}')`;
+        layerA.classList.remove('hidden');
+        layerB.classList.add('hidden');
+        activeLayer = 'a';
+      }
+    }
+
+    setInterval(nextBg, 3000);
+  })();
+
   window.addEventListener('popstate', e => {
     if (document.getElementById('lb').classList.contains('open')) {
       closeLb();
