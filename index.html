@@ -37,8 +37,14 @@
     }
     .hero-content { position: relative; z-index: 2; max-width: 680px; text-align: right; }
 
-    .hero-logo { margin-bottom: 1.2rem; }
-    .hero-logo img { height: 90px; width: auto; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.12)); }
+    .hero-bsd {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 1rem; font-weight: 700; color: var(--purple);
+      letter-spacing: 0.18em; margin-bottom: 0.8rem;
+      opacity: 0; animation: fadeUp 0.6s 0.05s ease forwards;
+    }
+    .hero-logo { margin-bottom: 1.4rem; opacity: 0; animation: fadeUp 0.7s 0.15s ease forwards; }
+    .hero-logo img { height: 100px; width: auto; filter: drop-shadow(0 2px 10px rgba(139,26,107,0.18)); }
 
     .badge {
       display: inline-block; background: var(--purple); color: #fff;
@@ -333,9 +339,34 @@
     }
     .vid-modal-counter { color: rgba(255,255,255,0.35); }
 
-    .yedidut-card { border-top-color: #1a5fa8; padding-top: 0; overflow: hidden; }
-    .yedidut-img { margin: -1.8rem -1.5rem 1rem -1.5rem; height: 130px; overflow: hidden; border-radius: 10px 10px 0 0; }
-    .yedidut-img img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
+    .yedidut-card {
+      grid-column: 1 / -1;
+      border-top-color: #1a5fa8;
+      padding: 0;
+      overflow: hidden;
+      min-height: 280px;
+      position: relative;
+      display: flex;
+      align-items: stretch;
+    }
+    .yedidut-img-bg {
+      position: absolute; inset: 0;
+      background-image: url('icon/yedidut.jpg');
+      background-size: cover; background-position: center 30%;
+      filter: brightness(0.45) saturate(0.8);
+      transition: filter 0.4s;
+    }
+    .yedidut-card:hover .yedidut-img-bg { filter: brightness(0.55) saturate(0.9); }
+    .yedidut-content {
+      position: relative; z-index: 2;
+      padding: 2.5rem 3rem;
+      display: flex; flex-direction: column; justify-content: center; align-items: flex-end;
+      text-align: right; width: 100%;
+    }
+    .yedidut-logo-wrap { margin-bottom: 1rem; }
+    .yedidut-logo { height: 60px; width: auto; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4)); }
+    .yedidut-card .card-title { font-size: 1.6rem !important; margin-bottom: 0.7rem; }
+    .yedidut-card .card-desc { max-width: 520px; line-height: 1.8; }
 
     /* ── QUOTE ── */
     .quote-section {
@@ -353,7 +384,7 @@
     .quote-dove svg { width: 52px; height: 52px; }
     .quote-mark { font-family: 'Frank Ruhl Libre', serif; font-size: 7rem; color: #fff; opacity: 0.15; line-height: 0.6; display: block; margin-bottom: 1rem; }
     blockquote { font-family: 'Frank Ruhl Libre', serif; font-size: clamp(1.5rem, 3.5vw, 2.4rem); font-weight: 400; color: #fff; line-height: 1.65; max-width: 580px; margin: 0 auto; text-shadow: 0 2px 16px rgba(0,0,0,0.5); }
-    cite { display: block; margin-top: 1.6rem; font-size: 0.88rem; font-family: 'Heebo', sans-serif; color: rgba(255,255,255,0.55); font-style: normal; font-weight: 500; letter-spacing: 0.1em; }
+    cite { display: block; margin-top: 1rem; font-size: 0.78rem; font-family: 'Heebo', sans-serif; color: rgba(255,255,255,0.4); font-style: normal; font-weight: 400; letter-spacing: 0.06em; }
 
     /* ── FOOTER ── */
     footer { background: #f2dae8; color: #4a1a38; padding: 2.5rem 8vw; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.85rem; }
@@ -441,10 +472,10 @@
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <div class="hero-logo reveal" style="opacity:0; animation: fadeUp 0.7s 0.1s ease forwards;">
+    <div class="hero-bsd">בס"ד</div>
+    <div class="hero-logo">
       <img src="icon/icon.png" alt="בואי בשלום" />
     </div>
-    <span class="badge">בס"ד · בואי בשלום</span>
     <h1><span>בואי בשלום</span><br/>
     <span style="font-size:0.55em; font-weight:700; color:var(--dark);">שעל ידי עמותת אמוני עם סגלה</span></h1>
     <p class="hero-sub">
@@ -539,12 +570,14 @@
     </div>
 
     <div class="program-card yedidut-card">
-      <div class="yedidut-img">
-        <img src="icon/yedidut.jpg" alt="פרויקט ידידות" onerror="this.style.display='none'"/>
+      <div class="yedidut-img-bg"></div>
+      <div class="yedidut-content">
+        <div class="yedidut-logo-wrap">
+          <img src="icon/yedidut_logo.png" alt="ידידות" onerror="this.style.display='none'" class="yedidut-logo"/>
+        </div>
+        <div class="card-title" style="color:#fff; font-size:1.4rem;">🌟 פרויקט ידידות</div>
+        <p class="card-desc" style="color:rgba(255,255,255,0.92); font-size:0.92rem;">לצעירות וסטודנטיות המעוניינות להעשיר את ידיעותיהן ביהדות.<br/>חווייתי ומעניק תחושת שייכות, חיבור לעולם חדש<br/>והתפתחות חברתית ברמה גבוהה ואיכותית.</p>
       </div>
-      <span class="card-dove"><svg viewBox="0 0 60 48" fill="none"><path d="M52 3C42 1,33 5,27 12C23 6,12 5,3 11C11 10,17 13,19 19C15 23,12 29,13 35C17 29,22 25,28 24C29 31,32 37,38 41C33 35,32 28,35 22C41 19,48 17,53 11C51 18,46 23,40 25C43 19,48 11,52 3Z" fill="#1a5fa8" opacity="0.8"/></svg></span>
-      <div class="card-title">🌟 פרויקט ידידות</div>
-      <p class="card-desc">לצעירות וסטודנטיות המעוניינות להעשיר את ידיעותיהן ביהדות. חווייתי ומעניק תחושת שייכות, חיבור לעולם חדש והתפתחות חברתית ברמה גבוהה ואיכותית.</p>
     </div>
 
   </div>
@@ -804,7 +837,7 @@
     <span class="quote-mark">"</span>
     <blockquote>
       בְּחָכְמָה יִבָּנֶה בָּיִת<br/>וּבִתְבוּנָה יִתְכּוֹנָן
-      <cite>— משלי · עמותת בואי בשלום</cite>
+      <cite>(משלי)</cite>
     </blockquote>
   </div>
 </section>
